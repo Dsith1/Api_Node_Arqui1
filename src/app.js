@@ -1,3 +1,4 @@
+global.estado=true;
 const bodyparser = require('body-parser');
 const morgan = require('morgan');
 const express = require('express');
