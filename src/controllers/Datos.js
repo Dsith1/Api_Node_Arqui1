@@ -26,6 +26,11 @@ module.exports = {
         res.status(200).json(dato[0].Correlativo);
     },
 
+    getMin: async(req,res,next)=>{
+        const dato=await modeloD.find().limit(1)
+        res.status(200).json(dato[0].Correlativo);
+    },
+
     hola: async(req,res,next)=>{
        
         res.status(200).send("hola");
