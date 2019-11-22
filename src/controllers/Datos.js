@@ -17,8 +17,9 @@ module.exports = {
 
     getDato: async(req,res,next)=>{
         const{Correlativo}= req.params;
+        const Ag=await modeloD.findOneAndUpdate({'Correlativo':Correlativo},{$set:{Leido:1}},{new:true});
         const dato=await modeloD.find({'Correlativo':Correlativo});
-        res.status(200).json(dato[0].Dato);
+        res.status(200).json("E=="+dato[0].Dato);
     },
 
     getMax: async(req,res,next)=>{
@@ -33,12 +34,12 @@ module.exports = {
 
     hola: async(req,res,next)=>{
        
-        res.status(200).send("hola");
+        res.status(200).send("E==hola");
     },
 
     getestado: async(req,res,next)=>{
        
-        res.status(200).send(estado);
+        res.status(200).send("E=="+estado);
     },
 
     setEstado:async(req,res,next)=>{
@@ -49,7 +50,27 @@ module.exports = {
             estado=true;
         }
 
-        res.status(200).send(estado);
+        res.status(200).send("E=="+estado);
+    },
+    getMAXNO: async(req,res,next)=>{
+       
+        const dato=await modeloD.find({'Leido':0}).sort({'Correlativo':-1}).limit(1)
+        res.status(200).json(dato[0].Correlativo);
+    },
+    getMINNO: async(req,res,next)=>{
+       
+        const dato=await modeloD.find({'Leido':0}).limit(1)
+        res.status(200).json(dato[0].Correlativo);
+    },
+    getMAXNO_Ar: async(req,res,next)=>{
+       
+        const dato=await modeloD.find({'Leido':0}).sort({'Correlativo':-1}).limit(1)
+        res.status(200).send("E=="+dato[0].Correlativo);
+    },
+    getMINNO_Ar: async(req,res,next)=>{
+       
+        const dato=await modeloD.find({'Leido':0}).limit(1)
+        res.status(200).send("E=="+dato[0].Correlativo);
     }
 
 };

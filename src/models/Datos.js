@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const SchemaDatos = new Schema(
     {
         Dato: String,
-        Correlativo: Number
+        Correlativo: Number,
+        Leido:Number
     }
 );
 
